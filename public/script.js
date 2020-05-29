@@ -43,8 +43,6 @@ const andyQuote = document.getElementById("andyquote");
 const andyAudioContainer = document.getElementById("andyaudiocontainer");
 const dogsongplayer = document.getElementById("dogsongplayer");
 
-let ttsBuffer;
-
 rerollAndyButton.addEventListener("click", event => {
   rollAndyImage();
 });
