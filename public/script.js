@@ -1,3 +1,6 @@
+// hey andy excuse the mess
+
+
 // client-side js, loaded by index.html
 // run by the browser each time the page is loaded
 
@@ -43,21 +46,24 @@ rerollAndyButton.addEventListener("click", event => {
 });
 
 function rollAndyImage() {
-  andyQuote.innerHTML = andyThoughts[(andyThoughts.length * Math.random()) | 0];
-  if (andyQuote.innerHTML === "did you ever watch thereportoftheweek?") {
-    currentImage.src =
-      "https://i.pinimg.com/474x/1c/d2/9e/1cd29ed27cec97a4c85fec88eb9afced.jpg";
-  } else {
-    currentImage.src = andyImages[(andyImages.length * Math.random()) | 0];
-  }
+//   andyQuote.innerHTML = andyThoughts[(andyThoughts.length * Math.random()) | 0];
+//   if (andyQuote.innerHTML === "did you ever watch thereportoftheweek?") {
+//     currentImage.src =
+//       "https://i.pinimg.com/474x/1c/d2/9e/1cd29ed27cec97a4c85fec88eb9afced.jpg";
+//   } else {
+//     currentImage.src = andyImages[(andyImages.length * Math.random()) | 0];
+//   }
+    var quote = andyThoughts[(andyThoughts.length * Math.random()) | 0];
+    fetch(`https://ijvbf58yui.execute-api.eu-west-1.amazonaws.com/default/andythoughts?quote=${quote}`).then(response => response.json()).then(data => andyThings(data, quote));
+
 }
 
-fetch(`https://ijvbf58yui.execute-api.eu-west-1.amazonaws.com/default/andythoughts?quote=${andyThoughts[(andyThoughts.length * Math.random()) | 0]}`, {
-  'mode': 'no-cors',
-  'headers': {
-    'Content-Type': 'application/json'
-  }
-}).then(response => console.log(response));
+function andyThings(data, quote) {
+    currentImage.src = data.image;
+    andyQuote.innerHTML = quote;
+}
+
+// fetch(`https://ijvbf58yui.execute-api.eu-west-1.amazonaws.com/default/andythoughts?quote=${andyThoughts[(andyThoughts.length * Math.random()) | 0]}`).then(response => console.log(response));
 
 // // define variables that reference elements on our page
 // const dreamsList = document.getElementById("dreams");
