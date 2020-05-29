@@ -52,7 +52,7 @@ rerollAndyButton.addEventListener("click", event => {
 function rollAndyImage() {
     var quote = andyThoughts[(andyThoughts.length * Math.random()) | 0];
     fetch(`https://ijvbf58yui.execute-api.eu-west-1.amazonaws.com/default/andythoughts?quote=${quote}`).then(response => response.json()).then(data => andyThings(data, quote));
-    dogsongplayer.volume = 0.4;
+    dogsongplayer.volume = 0.2;
     dogsongplayer.play();
 }
 
