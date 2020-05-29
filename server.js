@@ -15,6 +15,14 @@ app.get("/", (request, response) => {
   response.sendFile(__dirname + "/views/index.html");
 });
 
+app.get("/dogsong.mp3", (request, response) => {
+  response.sendFile(__dirname + "/public/dogsong.mp3");
+});
+
+app.get("/flexandy.ico", (request, response) => {
+    response.sendFile(__dirname + "/public/flexandy.ico");
+});
+
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);

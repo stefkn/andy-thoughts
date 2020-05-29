@@ -41,6 +41,7 @@ const currentImage = document.getElementById("andyimage");
 const rerollAndyButton = document.getElementById("andybutton");
 const andyQuote = document.getElementById("andyquote");
 const andyAudioContainer = document.getElementById("andyaudiocontainer");
+const dogsongplayer = document.getElementById("dogsongplayer");
 
 let ttsBuffer;
 
@@ -49,61 +50,15 @@ rerollAndyButton.addEventListener("click", event => {
 });
 
 function rollAndyImage() {
-//   andyQuote.innerHTML = andyThoughts[(andyThoughts.length * Math.random()) | 0];
-//   if (andyQuote.innerHTML === "did you ever watch thereportoftheweek?") {
-//     currentImage.src =
-//       "https://i.pinimg.com/474x/1c/d2/9e/1cd29ed27cec97a4c85fec88eb9afced.jpg";
-//   } else {
-//     currentImage.src = andyImages[(andyImages.length * Math.random()) | 0];
-//   }
     var quote = andyThoughts[(andyThoughts.length * Math.random()) | 0];
     fetch(`https://ijvbf58yui.execute-api.eu-west-1.amazonaws.com/default/andythoughts?quote=${quote}`).then(response => response.json()).then(data => andyThings(data, quote));
-
+    dogsongplayer.play();
 }
 
 function andyThings(data, quote) {
     currentImage.src = data.image;
     andyQuote.innerHTML = quote;
-    andyAudioContainer.innerHTML = `      <audio controls autoplay>
+    andyAudioContainer.innerHTML = `<audio controls autoplay>
     <source id="andyaudio" src="${data.audio}" type="audio/mpeg">
   </audio>`
 }
-
-// fetch(`https://ijvbf58yui.execute-api.eu-west-1.amazonaws.com/default/andythoughts?quote=${andyThoughts[(andyThoughts.length * Math.random()) | 0]}`).then(response => console.log(response));
-
-// // define variables that reference elements on our page
-// const dreamsList = document.getElementById("dreams");
-// const dreamsForm = document.querySelector("form");
-
-// // a helper function that creates a list item for a given dream
-// function appendNewDream(dream) {
-//   const newListItem = document.createElement("li");
-//   newListItem.innerText = dream;
-//   dreamsList.appendChild(newListItem);
-// }
-
-// // fetch the initial list of dreams
-// fetch("/dreams")
-//   .then(response => response.json()) // parse the JSON from the server
-//   .then(dreams => {
-//     // remove the loading text
-//     dreamsList.firstElementChild.remove();
-
-//     // iterate through every dream and add it to our page
-//     dreams.forEach(appendNewDream);
-
-//     // listen for the form to be submitted and add a new dream when it is
-//     dreamsForm.addEventListener("submit", event => {
-//       // stop our form submission from refreshing the page
-//       event.preventDefault();
-
-//       // get dream value and add it to the list
-//       let newDream = dreamsForm.elements.dream.value;
-//       dreams.push(newDream);
-//       appendNewDream(newDream);
-
-//       // reset form
-//       dreamsForm.reset();
-//       dreamsForm.elements.dream.focus();
-//     });
-//   });

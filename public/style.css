@@ -83,6 +83,8 @@
   }
 
   .btn-1 {
+      position: absolute;
+      z-index: 100;
       font-family: Hack, monospace;
       background: #0F0F6D;
       color: #ffffff;
@@ -93,7 +95,7 @@
       transition: all 0.5s;
       border-radius: 10px;
       width: auto;
-      position: relative;
+
 
       &::after {
           content: "\f054";
