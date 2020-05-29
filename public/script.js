@@ -40,6 +40,9 @@ const andyImages = [
 const currentImage = document.getElementById("andyimage");
 const rerollAndyButton = document.getElementById("andybutton");
 const andyQuote = document.getElementById("andyquote");
+const andyAudioContainer = document.getElementById("andyaudiocontainer");
+
+let ttsBuffer;
 
 rerollAndyButton.addEventListener("click", event => {
   rollAndyImage();
@@ -61,6 +64,9 @@ function rollAndyImage() {
 function andyThings(data, quote) {
     currentImage.src = data.image;
     andyQuote.innerHTML = quote;
+    andyAudioContainer.innerHTML = `      <audio controls autoplay>
+    <source id="andyaudio" src="${data.audio}" type="audio/mpeg">
+  </audio>`
 }
 
 // fetch(`https://ijvbf58yui.execute-api.eu-west-1.amazonaws.com/default/andythoughts?quote=${andyThoughts[(andyThoughts.length * Math.random()) | 0]}`).then(response => console.log(response));
